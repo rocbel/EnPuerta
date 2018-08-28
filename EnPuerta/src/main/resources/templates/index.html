@@ -1,0 +1,167 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>puerta 18</title>
+
+
+    
+    <!-- Bootstrap hoja de estilos  CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">    
+   
+    <!-- Mi hoja de estilos( no se por que pero si la ponia arriba de los estilos no me la levantaba) -->
+    <link href="css/misestilos.css" rel="stylesheet">
+    
+    
+
+    <!--Fontawesome - son las hojas de estilos no comprimidas-->
+	  <link href="fa/css/fontawesome.css" rel="stylesheet">
+	  <link href="fa/css/fa-brands.css" rel="stylesheet">
+	  <link href="fa/css/fa-regular.css" rel="stylesheet">
+	  <link href="fa/css/fa-solid.css" rel="stylesheet">
+
+    <!-- hoja de estiulos de wow-->
+    <link rel="stylesheet" href="wow/animate.css">
+	
+	<!-- tipografias embebidas-->
+    <link href="https://fonts.googleapis.com/css?family=Arimo:400,400i,700,700i|Tinos:400,400i,700,700i" rel="stylesheet"> 
+    
+    </head>
+
+<body >
+
+  <!-- NAV bar -->
+<ul class="nav nav-tabs nav-justified purple lighten-2 mx-0 mb-0 mt-1">
+    <li class="nav-item">
+        <a class="nav-link active" href="#!">Check home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#!">Nuevo Socio</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="#!">Admin</a>
+    </li>
+ 
+</ul>
+
+<!--Jumbotron -->
+
+<div class="jumbotron container-fluid jumboclase col-8">
+  <div class="container">
+
+     <img class="display-3" src="img/logopuerta18.png.png" alt="logo puerta" >
+
+
+
+<!-- Input buscador -->
+<form class="input-group mb-3 col-md-8" action="/">
+  <input name=palabraClave type="text" class="form-control" placeholder="Nombre, apellido o DNI" aria-label="username" aria-describedby="button-addon2">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="submit" id="button-addon2" ><i class="fas fa-search"></i></button> <!-- boton del buscador donde va el icono -->
+  </div>
+</form >
+
+	<div class="card" th:each="socio:${socios}">
+		<!-- each = cada. -->
+
+		<span th:href="|/${socio.id}|" th:text="${socio.nombre}"></span>
+		<span th:text="${socio.apellido}"></span>
+		<span th:text="${socio.dni}"></span>
+		<!--span es para que quede todo en una linea  -->
+		<a th:href="|/socios/checkin/${socio.id}|" th:unless="${socio.presente}">Check-in</a>
+        <a th:href="|/socios/checkout/${socio.id}|" th:if="${socio.presente}">Check-out</a>
+		
+	</div>   
+
+ 
+
+      </div>
+
+
+</div>
+<!--Jumbotron -->
+
+<!-- MODAL -->
+<div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog cascading-modal" role="document">
+        <!--Content-->
+        <div class="modal-content">
+
+            <!--Header-->
+            <div class="modal-header light-blue darken-3 white-text">
+                <h4 class="title"><i class="fa fa-pencil"></i> Contact form</h4>
+                <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <!--Body-->
+            <div class="modal-body mb-0">
+                <div class="md-form form-sm">
+                    <i class="fa fa-envelope prefix active"></i>
+                    <input type="text" id="form8" class="form-control">
+                    <label for="form8" class="active">Your name</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-lock prefix active"></i>
+                    <input type="password" id="form9" class="form-control">
+                    <label for="form9" class="active">Your email</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-tag prefix"></i>
+                    <input type="search" id="form-autocomplete-2" class="form-control mdb-autocomplete">
+                    <button class="mdb-autocomplete-clear">
+                        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
+                    </button>
+                    <label for="form-autocomplete-2" class="active">Subject</label>
+                </div>
+
+                <div class="md-form form-sm">
+                    <i class="fa fa-pencil prefix"></i>
+                    <textarea type="text" id="form67" class="md-textarea mb-0"></textarea>
+                    <label for="form67">Your message</label>
+                </div>
+
+                <div class="text-center mt-1-half">
+                    <button class="btn btn-info mb-2 waves-effect waves-light">Send <i class="fa fa-send ml-1"></i></button>
+                </div>
+
+            </div>
+        </div>
+        <!--/.Content-->
+    </div>
+</div>
+
+<div class="text-center">
+    <a href="" class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalContactForm">Launch Modal Contact</a>
+</div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    
+    <!-- Poner al final del cocumeno para que la pagina cargue rapido -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="js/bootstrap.min.js"></script>
+      
+
+    <!-- Es para darle play a la carpeta de soluciones. Inicia la libreria de wow -->
+      <script src="wow/wow.min.js"></script>
+              <script>
+              new WOW().init();
+              </script>
+
+  
+        
+  </body>
+</html>
